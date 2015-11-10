@@ -1,12 +1,15 @@
 package jberlin;
 
-import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 
 /**
  * Created by jberlin on 11/8/2015.
  */
-public class Vnode extends TreeItem<Directory> {
-    private StringProperty name;
+public class Vnode extends TreeItem<String> {
+    private String driveName;
+    public Vnode(String driveName, Directory... directories){
+        super("Drive: "+driveName);
+        this.getChildren().addAll(directories);
+    }
 }
