@@ -15,7 +15,7 @@ public class Inode extends TreeItem<String> {
     private Inode parent;
 
     public Inode(String fileName, String ext, String data) {
-        super(fileName+"."+ext);
+        super("Inode: "+fileName+"."+ext);
         this.childern = FXCollections.observableArrayList(
                 new TreeItem<>("File Name: "+fileName),new TreeItem<>("File type: "+ext),
                 new TreeItem<>("Data: "+data)
@@ -37,6 +37,13 @@ public class Inode extends TreeItem<String> {
         this.data = inode.data;
         this.parent = inode;
         this.getChildren().addAll(childern);
+        this.expandedProperty().addListener((bp,wasExpanded,isExpanded) ->{
+            System.out.println(this.fileName+" wasExpanded="+wasExpanded+" isExpanded="+isExpanded);
+            if(isExpanded)
+                this.expandParent();
+            if(!isExpanded)
+                this.unExpandParent();
+        });
     }
 
     public Inode getMyClone(){
@@ -46,11 +53,11 @@ public class Inode extends TreeItem<String> {
 
     public void removeMe(){
         if(this.parent != null){
-            this.parent.getParent().getChildren().remove(this.parent);
-            this.getParent().getChildren().remove(this);
-        } else {
-            this.getParent().getChildren().remove(this);
+            System.out.println("Remove me inode parent not null");
+            this.parent.removeMe();
         }
+        System.out.println("Remove me inode");
+        this.getParent().getChildren().remove(this);
     }
 
     public String getFileName() {
@@ -83,6 +90,24 @@ public class Inode extends TreeItem<String> {
 
     public void setParent(Inode parent) {
         this.parent = parent;
+    }
+
+    public void expandParent(){
+        if(this.parent != null){
+            parent.expandParent();
+            System.out.println("Inode Parent not null and parent is set to expanded");
+        } else {
+            this.setExpanded(true);
+        }
+    }
+
+    public void unExpandParent(){
+        if (this.parent != null){
+            System.out.println("Inode Parent not null and parent is set not expanded");
+            this.parent.unExpandParent();
+        } else {
+            this.setExpanded(false);
+        }
     }
 
     @Override

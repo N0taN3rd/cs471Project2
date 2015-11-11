@@ -21,13 +21,10 @@ public class CellFactory {
             if(item instanceof Inode) {
                 System.out.println("Its an Inode");
                 // item.getParent().getChildren().remove(item);
-            } else if(item instanceof Vnode) {
-                System.out.println("Its a Vnode");
             } else if(item instanceof Directory) {
                 System.out.println("Its a directory");
+
                 //item.getParent().getChildren().remove(item);
-            } else {
-                System.out.println("Its something else");
             }
 
         });
@@ -36,14 +33,10 @@ public class CellFactory {
             TreeItem<String> item = cell.getTreeItem();
             if(item instanceof Inode) {
                 System.out.println("Its an Inode");
-                item.getParent().getChildren().remove(item);
-            } else if(item instanceof Vnode) {
-                System.out.println("Its a Vnode");
+                ((Inode)item).removeMe();
             } else if(item instanceof Directory) {
                 System.out.println("Its a directory");
-                item.getParent().getChildren().remove(item);
-            } else {
-                System.out.println("Its something else");
+                ((Directory) item).removeMe();
             }
 
         });

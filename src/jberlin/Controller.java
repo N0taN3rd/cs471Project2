@@ -31,45 +31,47 @@ public class Controller implements Initializable {
                         new Inode("Carolyn2","gf","will she attend my graduation?")));
 
         Vnode b = new Vnode("B",
-                new Directory("tests",
-                        new Inode("Test1","txt","this is test 1"),
-                        new Inode("Test2","txt","this is test 2"),
-                        new Inode("Test3","txt","this is test 3")),
-                new Directory("inputs",
-                        new Inode("Input","dat","does this work"),
-                        new Inode("Input2","dat","I really hope it does"),
-                        new Inode("Input3","dat","if it doe not fuck")),
-                new Directory("myGf",
-                        new Inode("Caroly","gf","man she is nice"),
-                        new Inode("What I like about her","likes","she is nice and beautiful"),
-                        new Inode("Carolyn2","gf","will she attend my graduation?")));
+                new Directory("tests2",
+                        new Inode("Test4","txt","this is test 1"),
+                        new Inode("Test5","txt","this is test 2"),
+                        new Inode("Test6","txt","this is test 3")),
+                new Directory("inputs2",
+                        new Inode("Input4","dat","does this work"),
+                        new Inode("Input5","dat","I really hope it does"),
+                        new Inode("Input6","dat","if it doe not fuck")),
+                new Directory("myGf2",
+                        new Inode("Caroly3","gf","man she is nice"),
+                        new Inode("What I like about her2","likes","she is nice and beautiful"),
+                        new Inode("Carolyn4","gf","will she attend my graduation?")));
 
         Vnode c = new Vnode("C",
-                new Directory("tests",
-                        new Inode("Test1","txt","this is test 1"),
-                        new Inode("Test2","txt","this is test 2"),
-                        new Inode("Test3","txt","this is test 3")),
-                new Directory("inputs",
-                        new Inode("Input","dat","does this work"),
-                        new Inode("Input2","dat","I really hope it does"),
-                        new Inode("Input3","dat","if it doe not fuck")),
-                new Directory("myGf",
-                        new Inode("Caroly","gf","man she is nice"),
-                        new Inode("What I like about her","likes","she is nice and beautiful"),
-                        new Inode("Carolyn2","gf","will she attend my graduation?")));
+                new Directory("tests3",
+                        new Inode("Test7","txt","this is test 1"),
+                        new Inode("Test8","txt","this is test 2"),
+                        new Inode("Test9","txt","this is test 3")),
+                new Directory("inputs3",
+                        new Inode("Input7","dat","does this work"),
+                        new Inode("Input8","dat","I really hope it does"),
+                        new Inode("Input8","dat","if it doe not fuck")),
+                new Directory("myGf3",
+                        new Inode("Caroly5","gf","man she is nice"),
+                        new Inode("What I like about he3r","likes","she is nice and beautiful"),
+                        new Inode("Carolyn6","gf","will she attend my graduation?")));
 
-        fsA.setCellFactory(factory -> CellFactory.makeCell());
+       //fsA.setCellFactory(factory -> CellFactory.makeCell());
         fsA.setRoot(a);
 
-        fsB.setCellFactory(factory -> CellFactory.makeCell());
+        //fsB.setCellFactory(factory -> CellFactory.makeCell());
         fsB.setRoot(b);
 
-        fsC.setCellFactory(factory -> CellFactory.makeCell());
+       // fsC.setCellFactory(factory -> CellFactory.makeCell());
         fsC.setRoot(c);
 
         vsf.setCellFactory(factory->CellFactory.makeCell());
+
         VSF root = new VSF("VSF",a,b,c);
         vsf.setRoot(root);
+
 
 
 

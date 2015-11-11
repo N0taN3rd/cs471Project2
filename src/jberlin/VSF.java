@@ -12,7 +12,7 @@ public class VSF extends TreeItem<String> {
         super(name);
         ObservableList<TreeItem<String>> childern = FXCollections.observableArrayList();
         for(Vnode n : nodes){
-            childern.addAll(n.getChildren());
+            childern.addAll(n.getDirectories());
         }
         this.getChildren().addAll(childern);
     }
