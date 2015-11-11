@@ -1,6 +1,5 @@
 package jberlin;
 
-import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
 /**
