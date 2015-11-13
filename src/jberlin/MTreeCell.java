@@ -69,6 +69,21 @@ public class MTreeCell extends TextFieldTreeCell<String> {
                 d.removeMe();
             }
         });
+        MenuItem viewData = new MenuItem("View Data");
+        viewData.setOnAction(action->{
+            //TODO Get viewing working
+            TreeItem<String> item = getTreeItem();
+            if(item instanceof Inode) {
+                Inode inode = (Inode)item;
+
+                display.accept("");
+            } else if(item instanceof Directory) {
+                Directory d = (Directory)item;
+                StringBuilder sb = new StringBuilder();
+
+                display.accept(sb.toString());
+            }
+        });
         cm.getItems().addAll(add,delete);
         setContextMenu(cm);
     }
