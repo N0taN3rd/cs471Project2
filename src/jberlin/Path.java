@@ -6,12 +6,10 @@ package jberlin;
 public class Path {
     private String drive;
     private String folder;
-    private String usr;
 
     public Path(String drive, String folder) {
         this.drive = drive;
         this.folder = folder;
-        this.usr = System.getProperty("user.name");
     }
 
     public String getRealPath(){

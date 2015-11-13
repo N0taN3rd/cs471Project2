@@ -22,7 +22,7 @@ public class Directory extends TreeItem<String> implements Cloneable {
         super("Directory: "+d.dName);
         List<Inode> kiddies = new ArrayList<>();
         this.dName = d.dName;
-        d.getChildren().stream().filter(ti -> ti instanceof Inode).forEach(ti ->
+        d.getChildren().forEach(ti ->
             kiddies.add(((Inode) ti).clone())
         );
         this.parent = d;

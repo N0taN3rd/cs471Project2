@@ -34,7 +34,7 @@ public class MTreeCell extends TextFieldTreeCell<String> {
             TreeItem<String> item = getTreeItem();
             if(item instanceof Directory){
                 Directory d = (Directory) item;
-                if(d.getChildren().size() != 4){
+                if(d.getChildren().size() <= 4){
                     nfc.openStage();
                     if(nfc.isGoodInfo()){
                         String[] info = nfc.getInfo();
