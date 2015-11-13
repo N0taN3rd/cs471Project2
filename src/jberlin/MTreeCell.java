@@ -1,9 +1,6 @@
 package jberlin;
 
-import javafx.event.Event;
-import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.TextFieldTreeCell;

@@ -21,11 +21,10 @@ public class VFSController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         outPut.setEditable(false);
         opDisplay.setEditable(false);
-        StringBuilder builder = new StringBuilder();
-        builder.append("The tree with root node VSF \nis the tree you can perform operations on\n\n")
-                .append("The operations available \nto you are done through mouse interaction\n\n")
-                .append("Right click on the items \nto view the options\n\n");
-        opDisplay.setText(builder.toString());
+        String builder = "The tree with root node VSF \nis the tree you can perform operations on\n\n" +
+                "The operations available \nto you are done through mouse interaction\n\n" +
+                "Right click on the items \nto view the options\n\n";
+        opDisplay.setText(builder);
 
         Path[] aPath = {new Path("A", "tests"), new Path("A", "inputs"), new Path("A", "myGF")};
         Path[] bPath = {new Path("A", "tests2"), new Path("A", "inputs2"), new Path("A", "myGF2")};
@@ -79,7 +78,7 @@ public class VFSController implements Initializable {
         fsC.setRoot(c);
 
         vsf.setCellFactory(factory -> CellFactory.makeCell(display));
-        VSF root = new VSF("VFS", a, b, c);
+        VSF root = new VSF(a, b, c);
         vsf.setRoot(root);
 
     }

@@ -38,9 +38,7 @@ public class NewFileControler {
         }
         stage = new Stage();
         stage.setScene(new Scene(window));
-        this.done.setOnAction(doneAction->{
-            stage.close();
-        });
+        this.done.setOnAction(doneAction-> stage.close());
     }
 
     public void openStage(){
