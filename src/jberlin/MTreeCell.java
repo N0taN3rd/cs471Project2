@@ -75,16 +75,22 @@ public class MTreeCell extends TextFieldTreeCell<String> {
             TreeItem<String> item = getTreeItem();
             if(item instanceof Inode) {
                 Inode inode = (Inode)item;
-
-                display.accept("");
+                display.accept(inode.getFileNameType()+": "+inode.getData());
             } else if(item instanceof Directory) {
                 Directory d = (Directory)item;
                 StringBuilder sb = new StringBuilder();
-
+                sb.append(d.getPath().getVFSPath()).append("/\n");
+                d.getChildren().forEach(ti -> {
+                    Inode inode = (Inode)ti;
+                    sb.append("\t").append(inode.getFileNameType())
+                            .append(": ")
+                            .append(inode.getData())
+                            .append("\n");
+                });
                 display.accept(sb.toString());
             }
         });
-        cm.getItems().addAll(add,delete);
+        cm.getItems().addAll(add,delete,viewData);
         setContextMenu(cm);
     }
 
