@@ -35,9 +35,6 @@ public class Directory extends TreeItem<String> implements Cloneable {
             if(!isExpanded)
                 this.unExpandParent();
         });
-        String drive = ((Vnode)d.getParent()).getDriveName();
-        if(drive == null)
-            System.out.println("Vnode in clone drive is null");
         this.path = d.path;
     }
 

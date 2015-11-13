@@ -18,15 +18,13 @@ public class Vnode extends TreeItem<String> {
 
     public List<Directory> getDirectories(){
         List<Directory> kiddies = new ArrayList<>();
-        this.getChildren().stream().filter(t -> t instanceof Directory).forEach(t -> {
-            System.out.println("getDirs t is Directorys");
-            kiddies.add(((Directory) t).clone());
-        });
+        this.getChildren().forEach(t ->
+            kiddies.add(((Directory) t).clone())
+        );
         return kiddies;
     }
 
     public String getDriveName(){
-        System.out.println("In getDriveName "+this.driveName);
         return this.driveName;
     }
 }

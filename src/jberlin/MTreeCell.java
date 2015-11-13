@@ -36,13 +36,15 @@ public class MTreeCell extends TextFieldTreeCell<String> {
         add.setOnAction(action -> {
             TreeItem<String> item = getTreeItem();
             if(item instanceof Directory){
-                nfc.openStage();
-                if(nfc.isGoodInfo()){
-                    String[] info = nfc.getInfo();
-                    Directory d = (Directory) item;
-                    Inode file = new Inode(info[0],info[1],info[2],d.getPath());
-                    d.getChildren().add(file.clone());
-                    d.getMyParent().getChildren().add(file);
+                Directory d = (Directory) item;
+                if(d.getChildren().size() != 4){
+                    nfc.openStage();
+                    if(nfc.isGoodInfo()){
+                        String[] info = nfc.getInfo();
+                        Inode file = new Inode(info[0],info[1],info[2],d.getPath());
+                        d.getChildren().add(file.clone());
+                        d.getMyParent().getChildren().add(file);
+                    }
                 }
             }
         });
@@ -71,7 +73,6 @@ public class MTreeCell extends TextFieldTreeCell<String> {
         });
         MenuItem viewData = new MenuItem("View Data");
         viewData.setOnAction(action->{
-            //TODO Get viewing working
             TreeItem<String> item = getTreeItem();
             if(item instanceof Inode) {
                 Inode inode = (Inode)item;
