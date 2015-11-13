@@ -7,56 +7,72 @@ import java.util.List;
 /**
  * Created by jberlin on 11/8/2015.
  */
-public class Directory extends TreeItem<String> {
+public class Directory extends TreeItem<String> implements Cloneable {
     private String dName;
     private Directory parent;
-    public Directory(String dName, Inode... children) {
+    private Path path;
+    public Directory(String dName,String drive, Inode... children) {
         super("Vnode: "+dName);
         this.dName = dName;
         this.getChildren().addAll(children);
+        this.path  = new Path(drive,dName);
     }
 
     public Directory(Directory d){
         super("Directory: "+d.dName);
-        List<Inode> chiddies = new ArrayList<>();
+        List<Inode> kiddies = new ArrayList<>();
         this.dName = d.dName;
-        for(TreeItem<String> ti : d.getChildren()){
-            if(ti instanceof Inode){
-                System.out.println("Directory d constructor ti is instance of Inode");
-                chiddies.add(((Inode)ti).getMyClone());
-            }
-        }
+        d.getChildren().stream().filter(ti -> ti instanceof Inode).forEach(ti ->
+            kiddies.add(((Inode) ti).clone())
+        );
         this.parent = d;
-        this.getChildren().addAll(chiddies);
+        this.getChildren().addAll(kiddies);
 
         this.expandedProperty().addListener((bp,wasExpanded,isExpanded) ->{
-            System.out.println(this.dName+" wasExpanded="+wasExpanded+" isExpanded="+isExpanded);
-            if(isExpanded)
+            if(isExpanded) {
                 this.expandParent();
+            }
             if(!isExpanded)
                 this.unExpandParent();
         });
+        String drive = ((Vnode)d.getParent()).getDriveName();
+        if(drive == null)
+            System.out.println("Vnode in clone drive is null");
+        this.path = d.path;
+    }
+
+    public Path getPath(){
+        return path;
+    }
+
+    public Directory getMyParent(){
+        return this.parent;
     }
 
     public void expandParent(){
         if(this.parent != null){
             parent.expandParent();
-            System.out.println("Directory Parent not null and parent is set to expanded");
         } else {
             this.getParent().setExpanded(true);
             this.setExpanded(true);
         }
 
     }
+    public String getRealPath(){
+        return path.getRealPath();
+    }
 
+    public String getVFSPath(){
+        return path.getVFSPath();
+    }
 
-    public Directory cloneMe(){
+    @Override
+    public Directory clone(){
         return new Directory(this);
     }
 
     public void unExpandParent(){
         if (this.parent != null){
-            System.out.println("Directory Parent not null and parent is set not expanded");
             this.parent.setExpanded(false);
         } else {
             this.getParent().setExpanded(true);
@@ -65,10 +81,8 @@ public class Directory extends TreeItem<String> {
 
     public void removeMe(){
         if(this.parent != null){
-            System.out.println("Remove me Directory parent is not null");
             this.parent.removeMe();
         }
-        System.out.println("Remove me Directory");
         this.getParent().getChildren().remove(this);
     }
 

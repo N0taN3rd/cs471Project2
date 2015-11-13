@@ -13,20 +13,20 @@ public class Vnode extends TreeItem<String> {
     public Vnode(String driveName, Directory... directories){
         super("Drive: "+driveName);
         this.getChildren().addAll(directories);
+        this.driveName = driveName;
     }
 
     public List<Directory> getDirectories(){
         List<Directory> kiddies = new ArrayList<>();
-        for(TreeItem<String>  t : this.getChildren()){
-            if(t instanceof Directory){
-                System.out.println("getDirs t is Directorys");
-                kiddies.add(((Directory)t).cloneMe());
-            }
-
-        }
+        this.getChildren().stream().filter(t -> t instanceof Directory).forEach(t -> {
+            System.out.println("getDirs t is Directorys");
+            kiddies.add(((Directory) t).clone());
+        });
         return kiddies;
     }
 
-
-
+    public String getDriveName(){
+        System.out.println("In getDriveName "+this.driveName);
+        return this.driveName;
+    }
 }

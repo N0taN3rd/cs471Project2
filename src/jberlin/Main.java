@@ -12,13 +12,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("vfs.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, Screen.getPrimary().getVisualBounds().getWidth()/2,
+        primaryStage.setTitle("John Berlin cs471 Project 2");
+        primaryStage.setScene(new Scene(root, 1000,
                 Screen.getPrimary().getVisualBounds().getHeight()/2));
         primaryStage.show();
-
-
-
     }
 
 
