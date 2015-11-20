@@ -28,8 +28,10 @@ public class Inode extends TreeItem<String> implements Cloneable {
         this.ext = inode.ext;
         this.data = inode.data;
         this.parent = inode;
+        /*
         this.getChildren().addAll( new TreeItem<>("File Name: "+inode.fileName),new TreeItem<>("File type: "+inode.ext),
                 new TreeItem<>("Data: "+inode.data));
+                */
         this.expandedProperty().addListener((bp,wasExpanded,isExpanded) ->{
             if(isExpanded)
                 this.expandParent();

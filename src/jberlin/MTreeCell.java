@@ -73,7 +73,8 @@ public class MTreeCell extends TextFieldTreeCell<String> {
             TreeItem<String> item = getTreeItem();
             if(item instanceof Inode) {
                 Inode inode = (Inode)item;
-                display.accept(inode.getFileNameType()+": "+inode.getData());
+                display.accept(inode.getVFSPath()+": "+inode.getData());
+                inode.expandParent();
             } else if(item instanceof Directory) {
                 Directory d = (Directory)item;
                 StringBuilder sb = new StringBuilder();
